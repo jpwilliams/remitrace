@@ -58,26 +58,28 @@ Find the trace of the `instanceId` you wish to track. If it's an `entry` point, 
 
 ``` js
 async function findCause (query, traces = []) {
+  // handle the initial sending of an instanceId
   if (typeof query === 'string') {
     query = { 'event.metadata.instanceId': query }
   }
 
+  // find a trace and return early if it's the end of the line
   const nextTrace = await myCol.findOne(query)
   if (!nextTrace) return traces
   traces.push(nextTrace)
   if (!nextTrace.event.metadata.bubbleId) return traces
 
-  const nextQuery =
-    nextTrace.event.metadata.flowType === 'entry'
-      ? {
-        'event.metadata.flowType': 'exit',
-        'event.metadata.bubbleId': nextTrace.event.metadata.fromBubbleId,
-        'event.eventId': nextTrace.event.eventId
-      } : {
-        'event.metadata.flowType': 'entry',
-        'event.metadata.bubbleId': nextTrace.event.metadata.bubbleId
-      }
+  // sort out what to search for next
+  const nextQuery = nextTrace.event.metadata.flowType === 'entry' ? {
+    'event.metadata.flowType': 'exit',
+    'event.metadata.bubbleId': nextTrace.event.metadata.fromBubbleId,
+    'event.eventId': nextTrace.event.eventId
+  } : {
+    'event.metadata.flowType': 'entry',
+    'event.metadata.bubbleId': nextTrace.event.metadata.bubbleId
+  }
 
+  // go search for it
   return findCause(nextQuery, traces)
 }
 
