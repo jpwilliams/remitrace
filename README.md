@@ -1,6 +1,6 @@
 # remitrace
 
-Utilises the [tracing metadata](#) available in [`remit`](https://github.com/jpwilliams/remit) >=2.?.? to push captured messages to a queue (or to custom loggers) for storage and correlation.
+Utilises the [tracing metadata](#) available in [`remit`](https://github.com/jpwilliams/remit) >=2.2.0 to push captured messages to a queue (or to custom loggers) for storage and correlation.
 
 ``` sh
 yarn add remitrace
@@ -18,7 +18,7 @@ See the [`examples`](#) folder for how you might go about parsing the informatio
 
 `remitrace` on its own only allows the easy _capture_ of the data needed to trace your calls. It does, however, also provide a [parsing example](#) in code for how to correlate these calls. For clarity, I'll explain it here too.
 
-`remit` >=2.?.? provides some new metadata intended for tracing inside each `event` in a new `metadata` object.
+`remit` >=2.2.0 provides some new metadata intended for tracing inside each `event` in a new `metadata` object.
 
 * `originId` The ID of the initial request or emission that started the entire chain of calls. Every call in a chain will have the same ID here.
 * `bubbleId` The "bubble" (see more below) that the action happened in.
