@@ -3,11 +3,13 @@ const { track } = require('./lib/track')
 function remitrace (remit, opts = {}) {
   opts.queueName = opts.queueName || 'remitrace'
   opts.customLoggers = opts.customLoggers || []
-  opts.ignoredPaths = opts.ignoredPaths || []
+  opts.ignoredPaths = opts.ignoredPaths || [new RegExp(`^${opts.queueName}$`)]
 
-  if (!opts.ignoredPaths.includes(opts.queueName)) {
-    opts.ignoredPaths.push(opts.queueName)
-  }
+  opts.ignoredPaths.forEach((ignoredPath) => {
+    if (!(ignoredPath instanceof RegExp)) {
+      throw new Error('Invalid ignored path; must be regex')
+    }
+  })
 
   opts.emit = remit.emit(opts.queueName)
 
