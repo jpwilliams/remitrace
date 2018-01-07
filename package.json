@@ -1,6 +1,6 @@
 {
   "name": "remitrace",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Adds tracing in the form of persistent IDs to nested remit requests.",
   "main": "index.js",
   "repository": "https://github.com/jpwilliams/remitrace",
