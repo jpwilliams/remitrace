@@ -12,7 +12,15 @@ const remit = require('remit')()
 remitrace(remit)
 ```
 
-See the [`examples`](#) folder for how you might go about parsing the information provided.
+It's a nice, simple function:
+
+`remitrace(remit, options)`
+
+* `remit` A running [`remit`](https://github.com/jpwilliams/remit) instance of version >=2.2.0
+* `options` An optional object containing a few options for remitrace:
+  * `queueName` The RabbitMQ topic that `remitrace` will emit to. Defaults to `'remitrace'`.
+  * `customLoggers` Any custom actions to be done with traces can be specified as functions in an array here which are passed the `event` of the action to be traced. Defaults to `[]`. `[console.log]` is a nice way to see the traces being logged.
+  * `ignoredPaths` Event names to ignore when tracing messages. Must be an array of regexes. Defaults to `[/^queueName$/]` where `queueName` is the option above.
 
 ## Tracing with remitrace
 
