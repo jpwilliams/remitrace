@@ -12,6 +12,10 @@ const remit = require('remit')()
 remitrace(remit)
 ```
 
+See [`remitrace-mongo`](https://github.com/jpwilliams/remitrace-mongo) for a practical example of its use.
+
+---
+
 It's a nice, simple function:
 
 `remitrace(remit, options)`
@@ -24,7 +28,7 @@ It's a nice, simple function:
 
 ## Tracing with remitrace
 
-`remitrace` on its own only allows the easy _capture_ of the data needed to trace your calls. It does, however, also provide a [parsing example](#) in code for how to correlate these calls. For clarity, I'll explain it here too.
+`remitrace` on its own only allows the easy _capture_ of the data needed to trace your calls. There is, however, a usable MongoDB-backed example over at [`remitrace-mongo`]. For clarity, I'll explain how it works here too.
 
 `remit` >=2.2.0 provides some new metadata intended for tracing inside each `event` in a new `metadata` object.
 
