@@ -1,3 +1,5 @@
+# [Remit supports the OpenTracing standard from v2.4.0.](https://jpwilliams.github.io/remit/docs/guide/tracing) It is highly recommended that you use v2.4.0 or above for any tracing requirements and disregard this library.
+
 # remitrace
 
 Utilises the [tracing metadata](#) available in [`remit`](https://github.com/jpwilliams/remit) >=2.2.0 to push captured messages to a queue (or to custom loggers) for storage and correlation.
